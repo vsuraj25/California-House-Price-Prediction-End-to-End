@@ -72,3 +72,13 @@ RUN DOCKER IMAGE
 '''
 docker run - p 5000:5000 -e PORT=5000 9f8774e25b3d
 '''
+
+TO CHECK RUNNING CONTAINER
+'''
+docker ps
+'''
+
+TO STOP A DOCKER CONTAINER
+'''
+docker stop <container_id>
+'''
