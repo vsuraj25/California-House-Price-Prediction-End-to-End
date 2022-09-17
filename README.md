@@ -51,7 +51,24 @@ To check remote url(Origin link)
 get remote -v
 '''
 
+To Setup CI/CD Pipeline in Heroku we need 3 information
+'''
+HEROKU_EMAIL
+HEROKU_API_KEY
+HEROKU_APP_NAME
+
 To get the main branch name
 '''
 get branch
+'''
+
+BUILD DOCKER IMAGE
+'''
+docker build -t <imagename>:<tagname> .
+'''
+>Note: Image name for docker must be lowercase
+
+RUN DOCKER IMAGE
+'''
+docker run - p 5000:5000 -e PORT=5000 9f8774e25b3d
 '''
