@@ -82,3 +82,5 @@ TO STOP A DOCKER CONTAINER
 '''
 docker stop <container_id>
 '''
+
+Create a .github/workflows folder. Add a file main.yaml for github to heroku deploymnet.
