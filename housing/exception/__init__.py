@@ -1,6 +1,7 @@
 import os 
 import sys
 
+# Creating a class to return exceptions with customised message
 class HousingException(Exception):
     
     def __init__(self, error_message:Exception, error_detail:sys):
