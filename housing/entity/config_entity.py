@@ -1,7 +1,7 @@
 from collections import namedtuple
 from unicodedata import name
 
-DataIngestionConfig = namedtuple("DataIngestionConfig", ['dataset_download_url', "tgz_download_dir", "raw_data_dir", 
+DataIngestionConfig = namedtuple("DataIngestionConfig", ["dataset_download_url", "tgz_download_dir", "raw_data_dir", 
 "train_dir", "test_dir"])
 
 DataValidationConfig = namedtuple("DataValidationConfig", ["schema_file_path"])

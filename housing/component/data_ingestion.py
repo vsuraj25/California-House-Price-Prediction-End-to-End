@@ -2,7 +2,7 @@ from ctypes.wintypes import tagSIZE
 from fileinput import filename
 import re
 from tkinter import E
-from housing.entity.config_entity  import DataIngestionConfig
+from housing.entity.config_entity import DataIngestionConfig
 from housing.exception import HousingException
 from housing.logger import logging
 import os, sys
@@ -23,31 +23,37 @@ class DataIngestion:
         except Exception as e:
             raise HousingException(e,sys) from e
 
-    def download_housing_data(self)-> str:
+    def download_housing_data(self,)-> str:
+        
+        try:
+            # extracting remote url to download dataset
+            download_url = self.data_ingestion_config.dataset_download_url
+            logging.info(f"Download Url : [{download_url}]")  
 
-        # extracting remote url to download dataset
-        download_url = self.data_ingestion_config.dataset_download_url   
+            # folder location to download
+            tgz_download_dir = self.data_ingestion_config.tgz_download_dir
+            #Check whether tgz_download_dir is present or not, delete and recreate if present, create if not.
+             
+            if os.path.exists(tgz_download_dir):
+                os.remove(tgz_download_dir)
 
-        # folder location to download
-        tgz_download_dir = self.data_ingestion_config.tgz_download_dir
-        #Check whether tgz_download_dir is present or not, delete and recreate if present, create if not.
-        if os.path.exists(tgz_download_dir):
-            os.remove(tgz_download_dir)
+            os.makedirs(tgz_download_dir,exist_ok=True)
 
-        os.makedirs(tgz_download_dir,exist_ok=True)
+            # Extracting file basername from the download url
+            housing_file_name = os.path.basename(download_url)
 
-        # Extracting file basername from the download url
-        housing_file_name = os.path.basename(download_url)
+            # complete file path of location to download tgz file
+            tgz_file_path = os.path.join(tgz_download_dir, housing_file_name)
 
-        # complete file path of location to download tgz file
-        tgz_file_path = os.path.join(tgz_download_dir, housing_file_name)
+            #Download the file in tgz_file_path 
+            logging.info(f"Downloading file from [{download_url}] into [{tgz_file_path}] ")
+            urllib.request.urlretrieve(download_url, tgz_file_path)
+            logging.info(f"File Downloaded from [{download_url}] into [{tgz_file_path}] ")
 
-        #Download the file in tgz_file_path 
-        logging.info(f"Downloading file from [{download_url}] into [{tgz_file_path}] ")
-        urllib.request.urlretrieve(download_url, tgz_file_path)
-        logging.info(f"File Downloaded from [{download_url}] into [{tgz_file_path}] ")
+            return tgz_file_path
 
-        return tgz_file_path
+        except Exception as e:
+            raise HousingException(e,sys) from e
     
     def extract_tgz_file(self, tgz_file_path:str):
         try:
@@ -72,7 +78,7 @@ class DataIngestion:
             raw_data_dir = self.data_ingestion_config.raw_data_dir
 
             # geting the file name of extracted dataset
-            file_name = os.listdir(raw_data_dir)
+            file_name = os.listdir(raw_data_dir)[0]
 
             # Creating file path of to fetch extracted dataset
             housing_file_path = os.path.join(raw_data_dir, file_name)
@@ -106,7 +112,7 @@ class DataIngestion:
 
             ## Creating train and test file path
             train_file_path = os.path.join(self.data_ingestion_config.train_dir, file_name)
-            test_file_path = os.path.join(self.data_ingestion_config.test_dir)
+            test_file_path = os.path.join(self.data_ingestion_config.test_dir, file_name)
 
             ## Creating directories to save stratified train and test splits
             if strat_train_set is not None:
@@ -148,5 +154,5 @@ class DataIngestion:
             raise HousingException(e,sys) from e
 
     ## final execution before destroying the program.
-    def __del__():
+    def __del__(self):
         logging.info(f"{'*'*20} Data Ingestion Log Completed! {'*'*20}")
