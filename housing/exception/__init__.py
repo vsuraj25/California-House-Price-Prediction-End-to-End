@@ -19,7 +19,7 @@ class HousingException(Exception):
         """
         _, _, exec_tb = error_detail.exc_info() # TO get traceback information, two '_' are used as exec_info() returns (type,value, traceback) and we don't require type and value details.
         
-        line_number = exec_tb.tb_frame.f_lineno # traceback.tb_frame.f_lineno gives the line number which causes the error.
+        line_number = exec_tb.tb_lineno # traceback.tb_frame.f_lineno gives the line number which causes the error.
         file_name = exec_tb.tb_frame.f_code.co_filename # traceback.tb_frame.f_code.co_filename gives the filename in which error occured
         
         error_message = f"Error occured in the script : [{file_name}] at line number : [{line_number}] error message: [{error_message}] " 

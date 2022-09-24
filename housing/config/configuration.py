@@ -23,7 +23,7 @@ class Configuration:
 
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         try:
-            # Creating dictionary for data ingestion info in artifact folder
+            # Creating directory for data ingestion info in artifact folder
             artifact_dir = self.training_pipeline_config.artifact_dir
             data_ingestion_artifact_dir = os.path.join(artifact_dir,
             DATA_INGESTION_ARTIFACT_DIR,
@@ -73,9 +73,39 @@ class Configuration:
         except exception as e:
             raise HousingException(e, sys) from e
 
-
+    # step3
     def get_data_validation_config(self) -> DataValidationConfig:
-        pass
+        try:
+            # Creating directory for data validation info in artifact folder
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            data_validation_artifact_path = os.path.join(artifact_dir,
+                                                    DATA_VALDATION_ARTIFACT_DIR,
+                                                    self.time_stamp)
+            
+            # Creating path for schema.yaml file
+            data_validation_config_info = self.config_info[DATA_VALIDATION_CONFIG_KEY]
+
+            schema_file_path = os.path.join(ROOT_DIR,
+            data_validation_config_info[DATA_VALIDATION_SCHEMA_DIR_KEY],
+            data_validation_config_info[DATA_VALIDATION_SCHEMA_FILE_NAME_KEY])
+
+            report_file_path = os.path.join(data_validation_artifact_path,
+            data_validation_config_info[DATA_VALIDATION_REPORT_FILE_NAME_KEY])
+
+            report_page_file_path = os.path.join(data_validation_artifact_path,
+            data_validation_config_info[DATA_VALIDATION_REPORT_PAGE_FILE_NAME_KEY])
+ 
+  
+            data_validation_config = DataValidationConfig(
+                schema_file_path=schema_file_path,
+                report_file_path=report_file_path,
+                report_page_file_path=report_page_file_path
+            )
+            
+            return data_validation_config
+        except Exception as e:
+            logging.error(e)
+            raise Exception(e,sys) from e
 
     def get_data_transformation_config(self) -> DataTransformationConfig:
         pass

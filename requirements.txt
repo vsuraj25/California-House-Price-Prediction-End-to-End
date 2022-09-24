@@ -4,6 +4,7 @@ numpy
 pandas
 sklearn
 PyYAML
--e .
 six
 PyYAML
+evidently
+-e .

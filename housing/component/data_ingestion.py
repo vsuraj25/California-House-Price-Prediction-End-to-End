@@ -1,7 +1,3 @@
-from ctypes.wintypes import tagSIZE
-from fileinput import filename
-import re
-from tkinter import E
 from housing.entity.config_entity import DataIngestionConfig
 from housing.exception import HousingException
 from housing.logger import logging
@@ -134,7 +130,7 @@ class DataIngestion:
                                   message=f"Data Ingestion Completed Successfully!")
             logging.info(f"Data Ingestion Artifact : [{data_ingestion_artifact}] ")
             logging.info(f"Data Ingestion Completed!")
-            return DataIngestionArtifact
+            return data_ingestion_artifact
             
         except Exception as e:
             raise HousingException(e,sys) from e
@@ -148,7 +144,7 @@ class DataIngestion:
             self.extract_tgz_file(tgz_file_path=tgz_file_path)
  
             # Splitting raw data into train test split and returning it as an Artifact
-            self.split_data_as_train_test()
+            return self.split_data_as_train_test()
 
         except Exception as e:
             raise HousingException(e,sys) from e
