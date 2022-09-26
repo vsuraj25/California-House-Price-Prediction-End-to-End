@@ -7,4 +7,5 @@ PyYAML
 six
 PyYAML
 evidently
+dill
 -e .
