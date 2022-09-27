@@ -52,3 +52,14 @@ DATA_TRANSFORMATION_TEST_DIR_NAME_KEY = 'transformed_test_dir'
 DATA_TRANSFORMATION_PREPROCESSING_DIR_NAME_KEY = 'preprocessing_dir'
 DATA_TRANSFORMATION_PREPROCESSING_FILE_NAME_KEY = 'preprocessed_object_file_name'
 DATA_TRANSFORMATION_ADD_BEDROOM_PER_ROOM_KEY = 'add_bedroom_per_room'
+
+DATASET_SCHEMA_COLUMNS_KEY = 'columns'
+NUMERICAL_COLUMNS_KEY = 'numerical_columns'
+CATEGORICAL_COLUMNS_KEY = 'categorical_columns'
+TARGET_COLUMN_KEY = 'target_column'
+
+
+COLUMN_TOTAL_ROOMS = 'total_rooms'
+COLUMN_TOTAL_BEDROOMS = 'total_bedrooms'
+COLUMN_POPULATION = 'population'
+COLUMN_HOUSEHOLD = 'households'
