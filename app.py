@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/", methods=['GET','POST'])
 def index():
 
-    try:
+    try: 
         raise Exception("We are testing with custom exception! ")
     except Exception as e:
         housing = HousingException(e, sys)
