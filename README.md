@@ -4,7 +4,7 @@
 
 <div align="center">
   <a href="https://github.com/aravind9722">
-    <img src="https://user-images.githubusercontent.com/55409076/204999404-3b1934d8-8302-4abb-848f-4944c4df301e.png" alt="Logo" width="80" height="80"/> 
+    <img src="https://img.icons8.com/external-ddara-lineal-ddara/512/external-housing-real-estate-ddara-lineal-ddara.png" alt="Logo" width="80" height="80"/> 
   </a>
 
     
