@@ -30,9 +30,9 @@
 
 
 ## **Deployed app**
-[![App Screenshot](https://user-images.githubusercontent.com/55409076/204779198-56c97f74-05db-43fb-a9b8-db1af46184e9.PNG)](https://cal-house-price-prediction.herokuapp.com/)
+[![App Screenshot](https://user-images.githubusercontent.com/55409076/204779198-56c97f74-05db-43fb-a9b8-db1af46184e9.PNG)](https://web-production-6e4e.up.railway.app/)
 
-[LINK TO HEROKU APP](https://cal-house-price-prediction.herokuapp.com/)
+[LINK TO HEROKU APP](https://web-production-6e4e.up.railway.app/)
 
 <!-- GETTING STARTED -->
 <div id="intro"></div>
